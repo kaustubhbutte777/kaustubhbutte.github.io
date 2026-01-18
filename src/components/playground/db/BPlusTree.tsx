@@ -38,89 +38,99 @@ export default function BPlusTree() {
     isLeaf: false,
   });
 
-  // Insert a key into the B+ tree
+  // Deep clone a node to avoid mutations
+  const cloneNode = (node: BPlusNode): BPlusNode => ({
+    ...node,
+    keys: [...node.keys],
+    children: node.children.map(cloneNode),
+  });
+
+  // Insert a key into the B+ tree using functional state update
   const insert = useCallback((key: number) => {
-    if (root === null) {
-      setRoot(createLeafNode([key]));
-      addLog(`Created root with key ${key}`);
-      return;
-    }
+    setRoot(prevRoot => {
+      if (prevRoot === null) {
+        addLog(`Created root with key ${key}`);
+        return createLeafNode([key]);
+      }
 
-    const insertRecursive = (node: BPlusNode, key: number): { newNode: BPlusNode | null; promotedKey: number | null } => {
-      if (node.isLeaf) {
-        // Insert into leaf
-        const newKeys = [...node.keys, key].sort((a, b) => a - b);
+      // Clone the tree to avoid mutations
+      const root = cloneNode(prevRoot);
 
-        if (newKeys.length <= MAX_KEYS) {
-          node.keys = newKeys;
-          return { newNode: null, promotedKey: null };
-        } else {
-          // Split the leaf
-          const mid = Math.ceil(newKeys.length / 2);
-          const leftKeys = newKeys.slice(0, mid);
-          const rightKeys = newKeys.slice(mid);
-
-          node.keys = leftKeys;
-          const newLeaf = createLeafNode(rightKeys);
-          newLeaf.next = node.next;
-          node.next = newLeaf;
-
-          addLog(`Split leaf node, promoted key ${rightKeys[0]}`);
-          return { newNode: newLeaf, promotedKey: rightKeys[0] };
-        }
-      } else {
-        // Find child to insert into
-        let childIndex = node.keys.findIndex(k => key < k);
-        if (childIndex === -1) childIndex = node.keys.length;
-
-        const result = insertRecursive(node.children[childIndex], key);
-
-        if (result.newNode && result.promotedKey !== null) {
-          // Insert promoted key and new child
-          const newKeys = [...node.keys];
-          const newChildren = [...node.children];
-
-          newKeys.splice(childIndex, 0, result.promotedKey);
-          newChildren.splice(childIndex + 1, 0, result.newNode);
+      const insertRecursive = (node: BPlusNode, key: number): { newNode: BPlusNode | null; promotedKey: number | null } => {
+        if (node.isLeaf) {
+          // Insert into leaf
+          const newKeys = [...node.keys, key].sort((a, b) => a - b);
 
           if (newKeys.length <= MAX_KEYS) {
             node.keys = newKeys;
-            node.children = newChildren;
             return { newNode: null, promotedKey: null };
           } else {
-            // Split internal node
-            const mid = Math.floor(newKeys.length / 2);
+            // Split the leaf
+            const mid = Math.ceil(newKeys.length / 2);
             const leftKeys = newKeys.slice(0, mid);
-            const rightKeys = newKeys.slice(mid + 1);
-            const promotedKey = newKeys[mid];
+            const rightKeys = newKeys.slice(mid);
 
             node.keys = leftKeys;
-            node.children = newChildren.slice(0, mid + 1);
+            const newLeaf = createLeafNode(rightKeys);
+            newLeaf.next = node.next;
+            node.next = newLeaf;
 
-            const newInternal = createInternalNode(rightKeys, newChildren.slice(mid + 1));
-
-            addLog(`Split internal node, promoted key ${promotedKey}`);
-            return { newNode: newInternal, promotedKey };
+            addLog(`Split leaf node, promoted key ${rightKeys[0]}`);
+            return { newNode: newLeaf, promotedKey: rightKeys[0] };
           }
+        } else {
+          // Find child to insert into
+          let childIndex = node.keys.findIndex(k => key < k);
+          if (childIndex === -1) childIndex = node.keys.length;
+
+          const result = insertRecursive(node.children[childIndex], key);
+
+          if (result.newNode && result.promotedKey !== null) {
+            // Insert promoted key and new child
+            const newKeys = [...node.keys];
+            const newChildren = [...node.children];
+
+            newKeys.splice(childIndex, 0, result.promotedKey);
+            newChildren.splice(childIndex + 1, 0, result.newNode);
+
+            if (newKeys.length <= MAX_KEYS) {
+              node.keys = newKeys;
+              node.children = newChildren;
+              return { newNode: null, promotedKey: null };
+            } else {
+              // Split internal node
+              const mid = Math.floor(newKeys.length / 2);
+              const leftKeys = newKeys.slice(0, mid);
+              const rightKeys = newKeys.slice(mid + 1);
+              const promotedKey = newKeys[mid];
+
+              node.keys = leftKeys;
+              node.children = newChildren.slice(0, mid + 1);
+
+              const newInternal = createInternalNode(rightKeys, newChildren.slice(mid + 1));
+
+              addLog(`Split internal node, promoted key ${promotedKey}`);
+              return { newNode: newInternal, promotedKey };
+            }
+          }
+
+          return { newNode: null, promotedKey: null };
         }
+      };
 
-        return { newNode: null, promotedKey: null };
+      const result = insertRecursive(root, key);
+
+      addLog(`Inserted key ${key}`);
+
+      if (result.newNode && result.promotedKey !== null) {
+        // Create new root
+        addLog(`Created new root with key ${result.promotedKey}`);
+        return createInternalNode([result.promotedKey], [root, result.newNode]);
       }
-    };
 
-    const result = insertRecursive(root, key);
-
-    if (result.newNode && result.promotedKey !== null) {
-      // Create new root
-      const newRoot = createInternalNode([result.promotedKey], [root, result.newNode]);
-      setRoot(newRoot);
-      addLog(`Created new root with key ${result.promotedKey}`);
-    } else {
-      setRoot({ ...root });
-    }
-
-    addLog(`Inserted key ${key}`);
-  }, [root, addLog]);
+      return root;
+    });
+  }, [addLog]);
 
   // Search for a key
   const search = useCallback((key: number) => {
