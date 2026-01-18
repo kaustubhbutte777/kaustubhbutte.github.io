@@ -110,7 +110,7 @@ const initialNodes: Node<NodeData>[] = [
     position: { x: 225, y: 100 },
     data: {
       label: 'API Gateway',
-      icon: '🌐',
+      icon: '',
       type: 'gateway',
       tech: 'Kong/Nginx',
       throughput: '100K req/s',
@@ -127,7 +127,7 @@ const initialNodes: Node<NodeData>[] = [
     position: { x: 50, y: 220 },
     data: {
       label: 'Ride Service',
-      icon: '🎯',
+      icon: '',
       type: 'service',
       tech: 'Go',
       throughput: '50K req/s',
@@ -222,7 +222,7 @@ const initialNodes: Node<NodeData>[] = [
     position: { x: 550, y: 220 },
     data: {
       label: 'Redis',
-      icon: '⚡',
+      icon: '',
       type: 'cache',
       tech: 'Cache Cluster',
       latency: '1ms',
@@ -238,7 +238,7 @@ const initialNodes: Node<NodeData>[] = [
     position: { x: 50, y: 460 },
     data: {
       label: 'Rides DB',
-      icon: '🗄️',
+      icon: '',
       type: 'database',
       tech: 'PostgreSQL',
       description: 'Ride history and metadata',
@@ -251,7 +251,7 @@ const initialNodes: Node<NodeData>[] = [
     position: { x: 225, y: 460 },
     data: {
       label: 'Users DB',
-      icon: '🗄️',
+      icon: '',
       type: 'database',
       tech: 'PostgreSQL',
       description: 'User profiles and preferences',
@@ -264,7 +264,7 @@ const initialNodes: Node<NodeData>[] = [
     position: { x: 400, y: 460 },
     data: {
       label: 'Payments DB',
-      icon: '🗄️',
+      icon: '',
       type: 'database',
       tech: 'PostgreSQL',
       description: 'Transaction ledger',

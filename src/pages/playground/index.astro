@@ -7,7 +7,6 @@ const demos = [
     title: "Buffer Pool LRU",
     description: "Interactive visualization of InnoDB's buffer pool management with hot/cold page sublists",
     href: "/playground/buffer-pool",
-    icon: "🗄️",
     category: "Database",
     tags: ["MySQL", "InnoDB", "Memory Management"]
   },
@@ -15,7 +14,6 @@ const demos = [
     title: "B+ Tree",
     description: "Self-balancing tree structure used in database indexes with insert, search, and node splitting",
     href: "/playground/bplus-tree",
-    icon: "🌳",
     category: "Database",
     tags: ["Indexing", "B-Tree", "Storage Engine"]
   },
@@ -23,7 +21,6 @@ const demos = [
     title: "LSM Tree",
     description: "Log-Structured Merge Tree with MemTable, SSTable flush, and compaction visualization",
     href: "/playground/lsm-tree",
-    icon: "📚",
     category: "Database",
     tags: ["RocksDB", "LevelDB", "Write-Optimized"]
   },
@@ -31,7 +28,6 @@ const demos = [
     title: "Write-Ahead Log",
     description: "WAL for crash recovery with REDO/UNDO phases, checkpoints, and transaction management",
     href: "/playground/wal",
-    icon: "📝",
     category: "Database",
     tags: ["Durability", "ACID", "Recovery"]
   },
@@ -39,7 +35,6 @@ const demos = [
     title: "Consistent Hashing",
     description: "Visualize how consistent hashing distributes data across nodes with virtual nodes",
     href: "/playground/consistent-hashing",
-    icon: "🔄",
     category: "Algorithms",
     tags: ["Distributed Systems", "Load Balancing", "Sharding"]
   },
@@ -47,7 +42,6 @@ const demos = [
     title: "Raft Consensus",
     description: "Leader election and log replication in distributed systems with failure simulation",
     href: "/playground/raft",
-    icon: "🗳️",
     category: "Algorithms",
     tags: ["Consensus", "Distributed Systems", "Fault Tolerance"]
   },
@@ -55,7 +49,6 @@ const demos = [
     title: "Two-Phase Commit",
     description: "Atomic commit protocol for distributed transactions with prepare/commit phases",
     href: "/playground/two-phase-commit",
-    icon: "🤝",
     category: "Algorithms",
     tags: ["Transactions", "ACID", "Coordination"]
   },
@@ -63,7 +56,6 @@ const demos = [
     title: "Metrics Dashboard",
     description: "Simulated real-time observability dashboard with latency percentiles and circuit breakers",
     href: "/playground/metrics",
-    icon: "📊",
     category: "Observability",
     tags: ["Monitoring", "SRE", "Alerting"]
   },
@@ -71,7 +63,6 @@ const demos = [
     title: "System Design",
     description: "Interactive Uber-style architecture with animated data flow and failure scenarios",
     href: "/playground/system-design",
-    icon: "🏗️",
     category: "Architecture",
     tags: ["Microservices", "Scalability", "Design"]
   },
@@ -107,28 +98,23 @@ const categories = [...new Set(demos.map(d => d.category))];
         {demos.map((demo) => (
           <a href={demo.href} class="group block">
             <GlassCard client:visible className="h-full hover:border-zinc-700/50 transition-all duration-300">
-              <div class="flex items-start gap-4">
-                <div class="text-4xl">{demo.icon}</div>
-                <div class="flex-1">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 text-xs rounded-full bg-zinc-700/20 text-zinc-600">
-                      {demo.category}
-                    </span>
-                  </div>
-                  <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-2 group-hover:text-zinc-600 transition-colors">
-                    {demo.title}
-                  </h2>
-                  <p class="text-[var(--text-secondary)] text-sm mb-4">
-                    {demo.description}
-                  </p>
-                  <div class="flex flex-wrap gap-2">
-                    {demo.tags.map((tag) => (
-                      <span class="px-2 py-1 text-xs rounded bg-white/5 text-[var(--text-muted)]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2 py-1 text-xs rounded-full bg-zinc-700/20 text-zinc-600">
+                  {demo.category}
+                </span>
+              </div>
+              <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-2 group-hover:text-zinc-600 transition-colors">
+                {demo.title}
+              </h2>
+              <p class="text-[var(--text-secondary)] text-sm mb-4">
+                {demo.description}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {demo.tags.map((tag) => (
+                  <span class="px-2 py-1 text-xs rounded bg-white/5 text-[var(--text-muted)]">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </GlassCard>
           </a>
