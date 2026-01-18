@@ -244,7 +244,7 @@ export default function TwoPhaseCommit() {
                   y1={COORDINATOR_POS.y}
                   x2={PARTICIPANT_POSITIONS[i].x}
                   y2={PARTICIPANT_POSITIONS[i].y}
-                  stroke="rgba(255,255,255,0.1)"
+                  stroke="var(--svg-stroke)"
                   strokeWidth="0.5"
                 />
               ))}
@@ -294,14 +294,14 @@ export default function TwoPhaseCommit() {
                   height="12"
                   rx="2"
                   fill={stateColors[coordinatorState]}
-                  stroke="white"
+                  stroke="var(--bg-primary)"
                   strokeWidth="1"
                 />
                 <text
                   x={COORDINATOR_POS.x}
                   y={COORDINATOR_POS.y + 1}
                   textAnchor="middle"
-                  fill="white"
+                  fill="var(--bg-primary)"
                   fontSize="4"
                   fontWeight="bold"
                 >
@@ -334,7 +334,7 @@ export default function TwoPhaseCommit() {
                     x={PARTICIPANT_POSITIONS[i].x}
                     y={PARTICIPANT_POSITIONS[i].y + 1}
                     textAnchor="middle"
-                    fill="white"
+                    fill="var(--bg-primary)"
                     fontSize="4"
                     fontWeight="bold"
                   >

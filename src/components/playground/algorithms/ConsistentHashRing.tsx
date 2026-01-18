@@ -174,7 +174,7 @@ export default function ConsistentHashRing() {
                 cy="200"
                 r="150"
                 fill="none"
-                stroke="rgba(255,255,255,0.1)"
+                stroke="var(--svg-stroke)"
                 strokeWidth="30"
               />
 
@@ -192,7 +192,7 @@ export default function ConsistentHashRing() {
                       cy={200 + 150 * Math.sin((pos - 90) * Math.PI / 180)}
                       r={j === 0 ? 12 : 8}
                       fill={node.color}
-                      stroke="white"
+                      stroke="var(--bg-primary)"
                       strokeWidth={j === 0 ? 2 : 1}
                       opacity={j === 0 ? 1 : 0.6}
                     />
@@ -219,7 +219,7 @@ export default function ConsistentHashRing() {
                         cy={y}
                         r="6"
                         fill={getNodeColor(key.assignedNode || '')}
-                        stroke="white"
+                        stroke="var(--bg-primary)"
                         strokeWidth="1"
                       />
                     </motion.g>
@@ -228,10 +228,10 @@ export default function ConsistentHashRing() {
               </AnimatePresence>
 
               {/* Center label */}
-              <text x="200" y="195" textAnchor="middle" fill="white" fontSize="14">
+              <text x="200" y="195" textAnchor="middle" fill="var(--svg-fill)" fontSize="14">
                 Hash Ring
               </text>
-              <text x="200" y="215" textAnchor="middle" fill="#888" fontSize="12">
+              <text x="200" y="215" textAnchor="middle" fill="var(--svg-fill-muted)" fontSize="12">
                 0° - 360°
               </text>
             </svg>

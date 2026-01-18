@@ -310,7 +310,7 @@ export default function RaftConsensus() {
                     y1={NODE_POSITIONS[i].y}
                     x2={NODE_POSITIONS[i + j + 1].x}
                     y2={NODE_POSITIONS[i + j + 1].y}
-                    stroke="rgba(255,255,255,0.1)"
+                    stroke="var(--svg-stroke)"
                     strokeWidth="0.5"
                   />
                 ))
@@ -349,7 +349,7 @@ export default function RaftConsensus() {
                     cy={NODE_POSITIONS[i].y}
                     r="8"
                     fill={stateColors[node.state]}
-                    stroke="white"
+                    stroke="var(--bg-primary)"
                     strokeWidth={node.state === 'leader' ? 2 : 1}
                     animate={{
                       scale: node.state === 'leader' ? [1, 1.1, 1] : 1,
@@ -363,7 +363,7 @@ export default function RaftConsensus() {
                     x={NODE_POSITIONS[i].x}
                     y={NODE_POSITIONS[i].y + 1}
                     textAnchor="middle"
-                    fill="white"
+                    fill="var(--bg-primary)"
                     fontSize="4"
                     fontWeight="bold"
                   >

@@ -23,6 +23,11 @@
   --card-bg: #ffffff;
   --card-border: #e2e8f0;
   --divider: #e2e8f0;
+  /* SVG-specific colors */
+  --svg-stroke: rgba(0, 0, 0, 0.15);
+  --svg-stroke-strong: rgba(0, 0, 0, 0.3);
+  --svg-fill: #0f172a;
+  --svg-fill-muted: #64748b;
 }
 
 /* Dark Mode Variables */
@@ -42,6 +47,11 @@
   --card-bg: rgba(255, 255, 255, 0.05);
   --card-border: rgba(255, 255, 255, 0.1);
   --divider: rgba(255, 255, 255, 0.1);
+  /* SVG-specific colors */
+  --svg-stroke: rgba(255, 255, 255, 0.1);
+  --svg-stroke-strong: rgba(255, 255, 255, 0.3);
+  --svg-fill: #ffffff;
+  --svg-fill-muted: #888888;
 }
 
 /* Base Styles */

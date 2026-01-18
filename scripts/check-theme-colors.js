@@ -38,6 +38,15 @@ const FORBIDDEN_PATTERNS = [
 
   // Dividers
   { pattern: /\bdivide-gray-[0-9]+\b(?!\/)/g, msg: 'divide-gray-* → use CSS variable' },
+
+  // SVG hardcoded colors (inline styles)
+  { pattern: /\bfill="white"\b/g, msg: 'fill="white" → fill="var(--svg-fill)" or fill="var(--bg-primary)"' },
+  { pattern: /\bfill="#fff(?:fff)?"\b/gi, msg: 'fill="#fff" → fill="var(--svg-fill)" or fill="var(--bg-primary)"' },
+  { pattern: /\bstroke="white"\b/g, msg: 'stroke="white" → stroke="var(--svg-stroke)" or stroke="var(--bg-primary)"' },
+  { pattern: /\bstroke="#fff(?:fff)?"\b/gi, msg: 'stroke="#fff" → stroke="var(--svg-stroke)" or stroke="var(--bg-primary)"' },
+  { pattern: /\bstroke="rgba\(255,\s*255,\s*255/g, msg: 'stroke="rgba(255,255,255,*)" → stroke="var(--svg-stroke)"' },
+  // Only flag neutral grays in SVG - accent colors like #10b981 (green) are intentional
+  { pattern: /\bfill="#(?:666|888|999|aaa|bbb|ccc|ddd|eee)(?:[0-9a-f]{3})?"\b/gi, msg: 'fill="#gray" → fill="var(--svg-fill-muted)"' },
 ];
 
 // Files/directories to scan
@@ -47,6 +56,7 @@ const EXTENSIONS = ['.tsx', '.jsx', '.astro', '.ts', '.js'];
 // Files to ignore
 const IGNORE_FILES = [
   'ThemeToggle.tsx', // Theme toggle intentionally uses specific colors
+  'MetricsDashboard.tsx', // Recharts doesn't support CSS variables - needs React theme context
 ];
 
 function getAllFiles(dir, files = []) {

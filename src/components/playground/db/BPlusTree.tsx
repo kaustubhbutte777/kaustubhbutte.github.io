@@ -227,14 +227,14 @@ export default function BPlusTree() {
                   y1={y}
                   x2={position - nodeWidth / 2 + (i * nodeWidth) / node.keys.length}
                   y2={y + 35}
-                  stroke="rgba(255,255,255,0.2)"
+                  stroke="var(--svg-stroke-strong)"
                 />
               )}
               <text
                 x={position - nodeWidth / 2 + ((i + 0.5) * nodeWidth) / node.keys.length}
                 y={y + 22}
                 textAnchor="middle"
-                fill={searchValue === key ? '#f59e0b' : 'white'}
+                fill={searchValue === key ? '#f59e0b' : 'var(--svg-fill)'}
                 fontSize="12"
                 fontWeight={searchValue === key ? 'bold' : 'normal'}
               >
@@ -270,7 +270,7 @@ export default function BPlusTree() {
                 y1={y + 35}
                 x2={childPosition}
                 y2={(level + 1) * 80 + 20}
-                stroke={highlightPath.includes(child.id) ? '#6366f1' : 'rgba(255,255,255,0.2)'}
+                stroke={highlightPath.includes(child.id) ? '#6366f1' : 'var(--svg-stroke-strong)'}
                 strokeWidth={highlightPath.includes(child.id) ? 2 : 1}
               />
               {renderTree(child, level + 1, childPosition, totalWidth / 2)}
@@ -355,7 +355,7 @@ export default function BPlusTree() {
             {root ? (
               renderTree(root, 0, 400, 700)
             ) : (
-              <text x="400" y="150" textAnchor="middle" fill="#666" fontSize="14">
+              <text x="400" y="150" textAnchor="middle" fill="var(--svg-fill-muted)" fontSize="14">
                 Insert keys to build the tree
               </text>
             )}
