@@ -42,7 +42,7 @@ function ServiceNode({ data, selected }: NodeProps<NodeData>) {
 
   return (
     <div className={`px-4 py-3 rounded-xl border-2 transition-all min-w-[140px]
-      ${selected ? 'border-white shadow-lg shadow-white/20' : 'border-white/20'}
+      ${selected ? 'border-[var(--divider)] shadow-lg shadow-white/20' : 'border-white/20'}
       ${data.status === 'down' ? 'opacity-50' : ''}`}
       style={{
         background: `linear-gradient(135deg, ${nodeColors[data.type]}40, ${nodeColors[data.type]}20)`,
@@ -57,12 +57,12 @@ function ServiceNode({ data, selected }: NodeProps<NodeData>) {
       <div className="flex items-center gap-2">
         <span className="text-2xl">{data.icon}</span>
         <div>
-          <div className="text-white font-medium text-sm flex items-center gap-2">
+          <div className="text-[var(--text-primary)] font-medium text-sm flex items-center gap-2">
             {data.label}
             <div className={`w-2 h-2 rounded-full ${statusColor}`} />
           </div>
           {data.tech && (
-            <div className="text-gray-400 text-xs">{data.tech}</div>
+            <div className="text-[var(--text-secondary)] text-xs">{data.tech}</div>
           )}
         </div>
       </div>
@@ -402,8 +402,8 @@ export default function SystemDesignVisualizer() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">System Design Visualizer</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">System Design Visualizer</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Interactive Uber-style ride service architecture
         </p>
       </div>
@@ -453,7 +453,7 @@ export default function SystemDesignVisualizer() {
             proOptions={{ hideAttribution: true }}
           >
             <Background color="#334155" gap={20} />
-            <Controls className="!bg-gray-800/80 !border-gray-700" />
+            <Controls className="!bg-gray-800/80 !border-[var(--divider)]" />
             <MiniMap
               className="!bg-gray-800/80"
               nodeColor={(node) => nodeColors[(node.data as NodeData).type]}
@@ -476,8 +476,8 @@ export default function SystemDesignVisualizer() {
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">{selectedNode.data.icon}</span>
                   <div>
-                    <h3 className="text-white font-medium">{selectedNode.data.label}</h3>
-                    <span className="text-xs text-gray-400">{selectedNode.data.tech}</span>
+                    <h3 className="text-[var(--text-primary)] font-medium">{selectedNode.data.label}</h3>
+                    <span className="text-xs text-[var(--text-secondary)]">{selectedNode.data.tech}</span>
                   </div>
                   <div className={`ml-auto px-2 py-1 rounded text-xs
                     ${selectedNode.data.status === 'healthy' ? 'bg-green-500/20 text-green-400' :
@@ -488,19 +488,19 @@ export default function SystemDesignVisualizer() {
                   </div>
                 </div>
 
-                <p className="text-gray-400 text-sm mb-4">{selectedNode.data.description}</p>
+                <p className="text-[var(--text-secondary)] text-sm mb-4">{selectedNode.data.description}</p>
 
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   {selectedNode.data.throughput && (
                     <div className="glass p-2 rounded-lg">
-                      <div className="text-gray-500 text-xs">Throughput</div>
-                      <div className="text-white">{selectedNode.data.throughput}</div>
+                      <div className="text-[var(--text-muted)] text-xs">Throughput</div>
+                      <div className="text-[var(--text-primary)]">{selectedNode.data.throughput}</div>
                     </div>
                   )}
                   {selectedNode.data.latency && (
                     <div className="glass p-2 rounded-lg">
-                      <div className="text-gray-500 text-xs">Latency</div>
-                      <div className="text-white">{selectedNode.data.latency}</div>
+                      <div className="text-[var(--text-muted)] text-xs">Latency</div>
+                      <div className="text-[var(--text-primary)]">{selectedNode.data.latency}</div>
                     </div>
                   )}
                 </div>
@@ -509,7 +509,7 @@ export default function SystemDesignVisualizer() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="glass p-4 rounded-xl text-center text-gray-400 text-sm"
+                className="glass p-4 rounded-xl text-center text-[var(--text-secondary)] text-sm"
               >
                 Click a node to see details
               </motion.div>
@@ -518,7 +518,7 @@ export default function SystemDesignVisualizer() {
 
           {/* Legend */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Component Types</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Component Types</h3>
             <div className="grid grid-cols-2 gap-2 text-xs">
               {Object.entries(nodeColors).map(([type, color]) => (
                 <div key={type} className="flex items-center gap-2">
@@ -526,7 +526,7 @@ export default function SystemDesignVisualizer() {
                     className="w-3 h-3 rounded"
                     style={{ backgroundColor: color }}
                   />
-                  <span className="text-gray-400 capitalize">{type}</span>
+                  <span className="text-[var(--text-secondary)] capitalize">{type}</span>
                 </div>
               ))}
             </div>
@@ -534,8 +534,8 @@ export default function SystemDesignVisualizer() {
 
           {/* Architecture Notes */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-2">Architecture Highlights</h3>
-            <ul className="text-xs text-gray-400 space-y-1">
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Architecture Highlights</h3>
+            <ul className="text-xs text-[var(--text-secondary)] space-y-1">
               <li>• <span className="text-cyan-400">Kafka</span> for async event processing</li>
               <li>• <span className="text-red-400">Redis</span> for low-latency location data</li>
               <li>• <span className="text-purple-400">Microservices</span> enable independent scaling</li>
@@ -546,8 +546,8 @@ export default function SystemDesignVisualizer() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">About This Design:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">About This Design:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li>Simplified version of Uber's ride-matching architecture</li>
           <li>Click nodes to see technology stack and performance characteristics</li>

@@ -137,8 +137,8 @@ export default function ConsistentHashRing() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">Consistent Hashing</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Consistent Hashing</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Keys are assigned to the next node clockwise on the ring
         </p>
       </div>
@@ -264,7 +264,7 @@ export default function ConsistentHashRing() {
         <div className="space-y-4">
           {/* Nodes */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Nodes</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Nodes</h3>
             <div className="space-y-2">
               {nodes.map(node => (
                 <div key={node.id} className="flex items-center justify-between">
@@ -273,8 +273,8 @@ export default function ConsistentHashRing() {
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: node.color }}
                     />
-                    <span className="text-sm text-white">{node.id}</span>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-sm text-[var(--text-primary)]">{node.id}</span>
+                    <span className="text-xs text-[var(--text-muted)]">
                       ({node.position}°
                       {showVirtualNodes && ` + ${node.virtualNodes.length - 1} virtual`})
                     </span>
@@ -293,17 +293,17 @@ export default function ConsistentHashRing() {
 
           {/* Keys */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">
               Data Keys ({dataKeys.length})
             </h3>
             <div className="space-y-1 max-h-32 overflow-y-auto">
               {dataKeys.length === 0 ? (
-                <span className="text-gray-500 text-sm">No keys added yet</span>
+                <span className="text-[var(--text-muted)] text-sm">No keys added yet</span>
               ) : (
                 dataKeys.map(key => (
                   <div key={key.id} className="flex items-center justify-between text-xs">
-                    <span className="text-gray-400">{key.id}</span>
-                    <span className="text-gray-500">{key.hash}°</span>
+                    <span className="text-[var(--text-secondary)]">{key.id}</span>
+                    <span className="text-[var(--text-muted)]">{key.hash}°</span>
                     <span style={{ color: getNodeColor(key.assignedNode || '') }}>
                       → {key.assignedNode}
                     </span>
@@ -315,13 +315,13 @@ export default function ConsistentHashRing() {
 
           {/* Activity Log */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-2">Activity</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Activity</h3>
             <div className="space-y-1 font-mono text-xs max-h-24 overflow-y-auto">
               {log.map((entry, i) => (
-                <div key={i} className="text-gray-400">{entry}</div>
+                <div key={i} className="text-[var(--text-secondary)]">{entry}</div>
               ))}
               {log.length === 0 && (
-                <span className="text-gray-600">Add nodes and keys to see activity</span>
+                <span className="text-[var(--text-muted)]">Add nodes and keys to see activity</span>
               )}
             </div>
           </div>
@@ -329,8 +329,8 @@ export default function ConsistentHashRing() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">How Consistent Hashing Works:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">How Consistent Hashing Works:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li>Nodes are placed on a hash ring (0° - 360°)</li>
           <li>Each key is hashed and assigned to the next node clockwise</li>

@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from '../ui/ThemeToggle';
+
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/playground', label: 'Playground' },
@@ -24,8 +26,8 @@ const currentPath = Astro.url.pathname;
             class:list={[
               "relative py-2 px-1 text-sm font-medium transition-colors",
               currentPath === link.href
-                ? "text-white"
-                : "text-gray-400 hover:text-white"
+                ? "text-[var(--text-primary)]"
+                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             ]}
           >
             {link.label}
@@ -42,7 +44,7 @@ const currentPath = Astro.url.pathname;
         href="https://github.com/kaustubhbutte777"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-400 hover:text-white transition-colors"
+        class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         aria-label="GitHub"
       >
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -53,7 +55,7 @@ const currentPath = Astro.url.pathname;
         href="https://linkedin.com/in/kaustubh-butte"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-400 hover:text-white transition-colors"
+        class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         aria-label="LinkedIn"
       >
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -64,7 +66,7 @@ const currentPath = Astro.url.pathname;
         href="https://twitter.com/KaustubhButte"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-400 hover:text-white transition-colors"
+        class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         aria-label="Twitter"
       >
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -72,9 +74,11 @@ const currentPath = Astro.url.pathname;
         </svg>
       </a>
 
+      <ThemeToggle client:load />
+
       <button
         id="mobile-menu-btn"
-        class="md:hidden text-gray-400 hover:text-white transition-colors"
+        class="md:hidden text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         aria-label="Toggle menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,8 +99,8 @@ const currentPath = Astro.url.pathname;
               class:list={[
                 "block py-2 px-4 rounded-lg transition-colors",
                 currentPath === link.href
-                  ? "bg-indigo-500/20 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                  ? "bg-indigo-500/20 text-[var(--text-primary)]"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--glass-bg)]"
               ]}
             >
               {link.label}

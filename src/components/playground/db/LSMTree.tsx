@@ -238,8 +238,8 @@ export default function LSMTree() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">LSM Tree</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">LSM Tree</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Log-Structured Merge Tree used in RocksDB, LevelDB, Cassandra
         </p>
       </div>
@@ -252,14 +252,14 @@ export default function LSMTree() {
             value={inputKey}
             onChange={(e) => setInputKey(e.target.value)}
             placeholder="Key"
-            className="glass px-3 py-2 rounded-lg text-white text-sm w-24 bg-transparent"
+            className="glass px-3 py-2 rounded-lg text-[var(--text-primary)] text-sm w-24 bg-transparent"
           />
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Value"
-            className="glass px-3 py-2 rounded-lg text-white text-sm w-24 bg-transparent"
+            className="glass px-3 py-2 rounded-lg text-[var(--text-primary)] text-sm w-24 bg-transparent"
           />
           <button type="submit" className="btn-primary text-sm">
             Write
@@ -283,8 +283,8 @@ export default function LSMTree() {
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-3 h-3 rounded bg-green-500" />
-              <span className="text-sm font-medium text-white">MemTable (In-Memory)</span>
-              <span className="text-xs text-gray-500">{memtable.length}/{MAX_MEMTABLE_SIZE}</span>
+              <span className="text-sm font-medium text-[var(--text-primary)]">MemTable (In-Memory)</span>
+              <span className="text-xs text-[var(--text-muted)]">{memtable.length}/{MAX_MEMTABLE_SIZE}</span>
             </div>
             <div className="glass p-3 rounded-lg border border-green-500/30 min-h-[60px]">
               <div className="flex flex-wrap gap-2">
@@ -302,7 +302,7 @@ export default function LSMTree() {
                   ))}
                 </AnimatePresence>
                 {memtable.length === 0 && (
-                  <span className="text-gray-600 text-xs">Empty - writes go here first</span>
+                  <span className="text-[var(--text-muted)] text-xs">Empty - writes go here first</span>
                 )}
               </div>
             </div>
@@ -328,8 +328,8 @@ export default function LSMTree() {
                     className="w-3 h-3 rounded"
                     style={{ backgroundColor: `hsl(${200 + level * 30}, 70%, 50%)` }}
                   />
-                  <span className="text-sm font-medium text-white">Level {level}</span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-sm font-medium text-[var(--text-primary)]">Level {level}</span>
+                  <span className="text-xs text-[var(--text-muted)]">
                     (max: {level === 0 ? 2 : Math.pow(LEVEL_MULTIPLIER, level)} tables)
                   </span>
                 </div>
@@ -357,17 +357,17 @@ export default function LSMTree() {
                               : `hsla(${200 + level * 30}, 70%, 50%, 0.5)`
                           }}
                         >
-                          <div className="text-xs text-gray-400 mb-1">
+                          <div className="text-xs text-[var(--text-secondary)] mb-1">
                             SSTable ({table.size} entries)
                           </div>
-                          <div className="text-xs font-mono text-gray-500">
+                          <div className="text-xs font-mono text-[var(--text-muted)]">
                             [{table.minKey} ... {table.maxKey}]
                           </div>
                         </motion.div>
                       ))}
                     </AnimatePresence>
                     {!tablesByLevel.get(level)?.length && (
-                      <span className="text-gray-600 text-xs">No SSTables</span>
+                      <span className="text-[var(--text-muted)] text-xs">No SSTables</span>
                     )}
                   </div>
                 </div>
@@ -380,36 +380,36 @@ export default function LSMTree() {
         <div className="space-y-4">
           {/* Stats */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Statistics</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Statistics</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-400">Total Writes</span>
-                <span className="text-white">{writeCount}</span>
+                <span className="text-[var(--text-secondary)]">Total Writes</span>
+                <span className="text-[var(--text-primary)]">{writeCount}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">MemTable Size</span>
-                <span className="text-white">{memtable.length}/{MAX_MEMTABLE_SIZE}</span>
+                <span className="text-[var(--text-secondary)]">MemTable Size</span>
+                <span className="text-[var(--text-primary)]">{memtable.length}/{MAX_MEMTABLE_SIZE}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Total SSTables</span>
-                <span className="text-white">{sstables.length}</span>
+                <span className="text-[var(--text-secondary)]">Total SSTables</span>
+                <span className="text-[var(--text-primary)]">{sstables.length}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Max Level</span>
-                <span className="text-white">{maxLevel}</span>
+                <span className="text-[var(--text-secondary)]">Max Level</span>
+                <span className="text-[var(--text-primary)]">{maxLevel}</span>
               </div>
             </div>
           </div>
 
           {/* Activity Log */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-2">Activity</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Activity</h3>
             <div className="space-y-1 font-mono text-xs max-h-48 overflow-y-auto">
               {log.map((entry, i) => (
-                <div key={i} className="text-gray-400">{entry}</div>
+                <div key={i} className="text-[var(--text-secondary)]">{entry}</div>
               ))}
               {log.length === 0 && (
-                <span className="text-gray-600">Write data to see activity</span>
+                <span className="text-[var(--text-muted)]">Write data to see activity</span>
               )}
             </div>
           </div>
@@ -417,8 +417,8 @@ export default function LSMTree() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">How LSM Trees Work:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">How LSM Trees Work:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li><span className="text-green-400">MemTable</span>: In-memory sorted structure for recent writes</li>
           <li><span className="text-cyan-400">Flush</span>: When MemTable is full, it's written to disk as an SSTable</li>

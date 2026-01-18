@@ -87,7 +87,7 @@ const categories = [...new Set(demos.map(d => d.category))];
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           <span class="gradient-text-animated">Playground</span>
         </h1>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        <p class="text-[var(--text-secondary)] text-lg max-w-2xl mx-auto">
           Interactive visualizations demonstrating distributed systems concepts,
           database internals, and system design patterns.
         </p>
@@ -96,7 +96,7 @@ const categories = [...new Set(demos.map(d => d.category))];
       <!-- Category Pills -->
       <div class="flex flex-wrap justify-center gap-2 mb-8">
         {categories.map((cat) => (
-          <span class="px-4 py-2 rounded-full glass text-sm text-gray-300">
+          <span class="px-4 py-2 rounded-full glass text-sm text-[var(--text-secondary)]">
             {cat}
           </span>
         ))}
@@ -115,15 +115,15 @@ const categories = [...new Set(demos.map(d => d.category))];
                       {demo.category}
                     </span>
                   </div>
-                  <h2 class="text-xl font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors">
+                  <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-2 group-hover:text-indigo-400 transition-colors">
                     {demo.title}
                   </h2>
-                  <p class="text-gray-400 text-sm mb-4">
+                  <p class="text-[var(--text-secondary)] text-sm mb-4">
                     {demo.description}
                   </p>
                   <div class="flex flex-wrap gap-2">
                     {demo.tags.map((tag) => (
-                      <span class="px-2 py-1 text-xs rounded bg-white/5 text-gray-500">
+                      <span class="px-2 py-1 text-xs rounded bg-white/5 text-[var(--text-muted)]">
                         {tag}
                       </span>
                     ))}

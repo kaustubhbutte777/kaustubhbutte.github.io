@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:theme": "node scripts/check-theme-colors.js",
+    "fix:theme": "node scripts/fix-theme-colors.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -25,5 +28,8 @@
     "recharts": "^3.6.0",
     "tailwindcss": "^4.1.18",
     "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }

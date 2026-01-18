@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import HeroScene from './3d/HeroScene';
-import AnimatedText from './ui/AnimatedText';
 import GlowButton from './ui/GlowButton';
 
 export default function Hero() {
@@ -15,29 +14,26 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="mb-6"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm text-gray-300 mb-8">
+          <span className="inline-block px-4 py-2 rounded-full glass text-sm text-[var(--text-secondary)] mb-8">
             Welcome to my corner of the internet
           </span>
         </motion.div>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          <AnimatedText
-            text="Hi, I'm"
-            className="block text-white"
-          />
-          <AnimatedText
-            text="Kaustubh Butte"
-            className="block"
-            gradient
-            delay={0}
-          />
-        </h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+        >
+          <span className="text-[var(--text-primary)]">Hi, I'm </span>
+          <span className="gradient-text-animated">Kaustubh Butte</span>
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto"
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto"
         >
           Senior Software Engineer passionate about building scalable systems.
           <br />
@@ -47,7 +43,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
           className="flex flex-wrap gap-4 justify-center"
         >
           <GlowButton href="/projects" variant="primary">
@@ -65,19 +61,19 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-          className="mt-16 flex items-center justify-center gap-8 text-gray-500"
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mt-16 flex items-center justify-center gap-8 text-[var(--text-muted)]"
         >
           <div className="text-center">
             <div className="text-3xl font-bold gradient-text">6+</div>
             <div className="text-sm">Years Experience</div>
           </div>
-          <div className="w-px h-12 bg-gray-700"></div>
+          <div className="w-px h-12 bg-[var(--divider)]"></div>
           <div className="text-center">
             <div className="text-3xl font-bold gradient-text">Java</div>
             <div className="text-sm">& Go</div>
           </div>
-          <div className="w-px h-12 bg-gray-700"></div>
+          <div className="w-px h-12 bg-[var(--divider)]"></div>
           <div className="text-center">
             <div className="text-3xl font-bold gradient-text">Uber</div>
             <div className="text-sm">Current</div>
@@ -89,18 +85,18 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-gray-600 flex items-start justify-center p-2"
+          className="w-6 h-10 rounded-full border-2 border-[var(--divider)] flex items-start justify-center p-2"
         >
           <motion.div
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-2 bg-gray-400 rounded-full"
+            className="w-1 h-2 bg-[var(--text-muted)] rounded-full"
           />
         </motion.div>
       </motion.div>

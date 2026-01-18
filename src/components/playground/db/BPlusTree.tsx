@@ -299,8 +299,8 @@ export default function BPlusTree() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">B+ Tree</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">B+ Tree</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Self-balancing tree used in database indexes
         </p>
       </div>
@@ -313,7 +313,7 @@ export default function BPlusTree() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Enter key"
-            className="glass px-3 py-2 rounded-lg text-white text-sm w-24 bg-transparent"
+            className="glass px-3 py-2 rounded-lg text-[var(--text-primary)] text-sm w-24 bg-transparent"
           />
           <button type="submit" className="btn-primary text-sm">
             Insert
@@ -367,47 +367,47 @@ export default function BPlusTree() {
         <div className="space-y-4">
           {/* Stats */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Tree Properties</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Tree Properties</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-400">Order (max keys)</span>
-                <span className="text-white">{MAX_KEYS}</span>
+                <span className="text-[var(--text-secondary)]">Order (max keys)</span>
+                <span className="text-[var(--text-primary)]">{MAX_KEYS}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Depth</span>
-                <span className="text-white">{getTreeDepth(root)}</span>
+                <span className="text-[var(--text-secondary)]">Depth</span>
+                <span className="text-[var(--text-primary)]">{getTreeDepth(root)}</span>
               </div>
             </div>
           </div>
 
           {/* Legend */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Legend</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Legend</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded border border-indigo-500 bg-indigo-500/20" />
-                <span className="text-gray-400">Internal Node</span>
+                <span className="text-[var(--text-secondary)]">Internal Node</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded border border-green-500 bg-green-500/20" />
-                <span className="text-gray-400">Leaf Node</span>
+                <span className="text-[var(--text-secondary)]">Leaf Node</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-0.5 bg-green-500" style={{ backgroundImage: 'repeating-linear-gradient(90deg, #10b981, #10b981 3px, transparent 3px, transparent 6px)' }} />
-                <span className="text-gray-400">Leaf Links</span>
+                <span className="text-[var(--text-secondary)]">Leaf Links</span>
               </div>
             </div>
           </div>
 
           {/* Activity Log */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-2">Activity</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Activity</h3>
             <div className="space-y-1 font-mono text-xs max-h-32 overflow-y-auto">
               {log.map((entry, i) => (
-                <div key={i} className="text-gray-400">{entry}</div>
+                <div key={i} className="text-[var(--text-secondary)]">{entry}</div>
               ))}
               {log.length === 0 && (
-                <span className="text-gray-600">Insert keys to see activity</span>
+                <span className="text-[var(--text-muted)]">Insert keys to see activity</span>
               )}
             </div>
           </div>
@@ -415,8 +415,8 @@ export default function BPlusTree() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">How B+ Trees Work:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">How B+ Trees Work:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li><span className="text-indigo-400">Internal nodes</span> store keys and pointers to children</li>
           <li><span className="text-green-400">Leaf nodes</span> store actual data and are linked for range queries</li>

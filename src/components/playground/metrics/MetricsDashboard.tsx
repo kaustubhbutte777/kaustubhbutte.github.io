@@ -104,8 +104,8 @@ export default function MetricsDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-white">Service Metrics</h2>
-          <p className="text-gray-400 text-sm">Real-time observability dashboard</p>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Service Metrics</h2>
+          <p className="text-[var(--text-secondary)] text-sm">Real-time observability dashboard</p>
         </div>
         <div className="flex items-center gap-3">
           <button
@@ -129,45 +129,45 @@ export default function MetricsDashboard() {
           className="glass p-4 rounded-xl"
           animate={{ borderColor: latestMetrics?.p99 > 500 ? '#ef4444' : 'rgba(255,255,255,0.1)' }}
         >
-          <div className="text-gray-400 text-xs mb-1">P99 Latency</div>
-          <div className={`text-2xl font-bold ${latestMetrics?.p99 > 500 ? 'text-red-400' : 'text-white'}`}>
+          <div className="text-[var(--text-secondary)] text-xs mb-1">P99 Latency</div>
+          <div className={`text-2xl font-bold ${latestMetrics?.p99 > 500 ? 'text-red-400' : 'text-[var(--text-primary)]'}`}>
             {latestMetrics?.p99}ms
           </div>
-          <div className="text-xs text-gray-500">SLO: &lt;500ms</div>
+          <div className="text-xs text-[var(--text-muted)]">SLO: &lt;500ms</div>
         </motion.div>
 
         <motion.div
           className="glass p-4 rounded-xl"
           animate={{ borderColor: latestMetrics?.throughput < 1000 ? '#f59e0b' : 'rgba(255,255,255,0.1)' }}
         >
-          <div className="text-gray-400 text-xs mb-1">Throughput</div>
-          <div className={`text-2xl font-bold ${latestMetrics?.throughput < 1000 ? 'text-yellow-400' : 'text-white'}`}>
+          <div className="text-[var(--text-secondary)] text-xs mb-1">Throughput</div>
+          <div className={`text-2xl font-bold ${latestMetrics?.throughput < 1000 ? 'text-yellow-400' : 'text-[var(--text-primary)]'}`}>
             {latestMetrics?.throughput}
           </div>
-          <div className="text-xs text-gray-500">req/sec</div>
+          <div className="text-xs text-[var(--text-muted)]">req/sec</div>
         </motion.div>
 
         <motion.div
           className="glass p-4 rounded-xl"
           animate={{ borderColor: latestMetrics?.errorRate > 5 ? '#ef4444' : 'rgba(255,255,255,0.1)' }}
         >
-          <div className="text-gray-400 text-xs mb-1">Error Rate</div>
+          <div className="text-[var(--text-secondary)] text-xs mb-1">Error Rate</div>
           <div className={`text-2xl font-bold ${latestMetrics?.errorRate > 5 ? 'text-red-400' : 'text-green-400'}`}>
             {latestMetrics?.errorRate}%
           </div>
-          <div className="text-xs text-gray-500">SLO: &lt;5%</div>
+          <div className="text-xs text-[var(--text-muted)]">SLO: &lt;5%</div>
         </motion.div>
 
         <motion.div className={`glass p-4 rounded-xl ${getCircuitColor(circuitState)}`}>
-          <div className="text-gray-400 text-xs mb-1">Circuit Breaker</div>
+          <div className="text-[var(--text-secondary)] text-xs mb-1">Circuit Breaker</div>
           <div className="text-2xl font-bold capitalize">{circuitState}</div>
-          <div className="text-xs text-gray-500">Auto-managed</div>
+          <div className="text-xs text-[var(--text-muted)]">Auto-managed</div>
         </motion.div>
       </div>
 
       {/* Latency Chart */}
       <div className="glass-strong p-6 rounded-2xl">
-        <h3 className="text-sm font-medium text-white mb-4">Latency Percentiles</h3>
+        <h3 className="text-sm font-medium text-[var(--text-primary)] mb-4">Latency Percentiles</h3>
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -196,7 +196,7 @@ export default function MetricsDashboard() {
       {/* Throughput & Errors */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="glass-strong p-6 rounded-2xl">
-          <h3 className="text-sm font-medium text-white mb-4">Throughput</h3>
+          <h3 className="text-sm font-medium text-[var(--text-primary)] mb-4">Throughput</h3>
           <ResponsiveContainer width="100%" height={150}>
             <AreaChart data={data}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -221,7 +221,7 @@ export default function MetricsDashboard() {
         </div>
 
         <div className="glass-strong p-6 rounded-2xl">
-          <h3 className="text-sm font-medium text-white mb-4">Error Rate</h3>
+          <h3 className="text-sm font-medium text-[var(--text-primary)] mb-4">Error Rate</h3>
           <ResponsiveContainer width="100%" height={150}>
             <AreaChart data={data}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -248,8 +248,8 @@ export default function MetricsDashboard() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">Dashboard Features:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">Dashboard Features:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li><span className="text-green-400">Latency percentiles</span> show P50, P95, P99 with SLO threshold</li>
           <li><span className="text-indigo-400">Circuit breaker</span> automatically opens when error rate exceeds 10%</li>

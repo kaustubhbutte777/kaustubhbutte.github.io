@@ -254,8 +254,8 @@ export default function RaftConsensus() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">Raft Consensus</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Raft Consensus</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Leader election and log replication in distributed systems
         </p>
       </div>
@@ -386,7 +386,7 @@ export default function RaftConsensus() {
 
           {/* Legend */}
           <div className="flex justify-center gap-4 mt-4 text-xs">
-            <span className="text-gray-400">● Follower</span>
+            <span className="text-[var(--text-secondary)]">● Follower</span>
             <span className="text-yellow-400">● Candidate</span>
             <span className="text-green-400">● Leader</span>
           </div>
@@ -396,7 +396,7 @@ export default function RaftConsensus() {
         <div className="space-y-4">
           {/* Node States */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Node States</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Node States</h3>
             <div className="space-y-2">
               {nodes.map(node => (
                 <div key={node.id} className="flex items-center justify-between text-sm">
@@ -405,10 +405,10 @@ export default function RaftConsensus() {
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: stateColors[node.state] }}
                     />
-                    <span className="text-white">{node.id}</span>
+                    <span className="text-[var(--text-primary)]">{node.id}</span>
                   </div>
-                  <span className="text-gray-400">Term {node.term}</span>
-                  <span className="text-gray-500 text-xs">
+                  <span className="text-[var(--text-secondary)]">Term {node.term}</span>
+                  <span className="text-[var(--text-muted)] text-xs">
                     Log: [{node.log.map(e => e.command).join(', ')}]
                   </span>
                 </div>
@@ -418,13 +418,13 @@ export default function RaftConsensus() {
 
           {/* Activity Log */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-2">Activity</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Activity</h3>
             <div className="space-y-1 font-mono text-xs max-h-32 overflow-y-auto">
               {log.map((entry, i) => (
-                <div key={i} className="text-gray-400">{entry}</div>
+                <div key={i} className="text-[var(--text-secondary)]">{entry}</div>
               ))}
               {log.length === 0 && (
-                <span className="text-gray-600">Start simulation to see activity</span>
+                <span className="text-[var(--text-muted)]">Start simulation to see activity</span>
               )}
             </div>
           </div>
@@ -432,8 +432,8 @@ export default function RaftConsensus() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">How Raft Works:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">How Raft Works:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li><span className="text-yellow-400">Leader Election</span>: Followers timeout and become candidates, requesting votes</li>
           <li><span className="text-green-400">Log Replication</span>: Leader appends entries and replicates to followers</li>

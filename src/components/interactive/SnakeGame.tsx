@@ -150,10 +150,10 @@ export default function SnakeGame() {
       <div className="glass-strong p-6 rounded-2xl">
         {/* Score display */}
         <div className="flex justify-between items-center mb-4">
-          <div className="text-gray-400">
-            Score: <span className="text-white font-bold">{score}</span>
+          <div className="text-[var(--text-secondary)]">
+            Score: <span className="text-[var(--text-primary)] font-bold">{score}</span>
           </div>
-          <div className="text-gray-400">
+          <div className="text-[var(--text-secondary)]">
             High Score: <span className="text-indigo-400 font-bold">{highScore}</span>
           </div>
         </div>
@@ -200,10 +200,10 @@ export default function SnakeGame() {
                 {gameOver ? (
                   <>
                     <div className="text-2xl font-bold text-red-400 mb-2">Game Over!</div>
-                    <div className="text-gray-400 mb-4">Score: {score}</div>
+                    <div className="text-[var(--text-secondary)] mb-4">Score: {score}</div>
                   </>
                 ) : (
-                  <div className="text-xl text-gray-300 mb-4">Snake Game</div>
+                  <div className="text-xl text-[var(--text-secondary)] mb-4">Snake Game</div>
                 )}
                 <button
                   onClick={resetGame}
@@ -217,7 +217,7 @@ export default function SnakeGame() {
         </div>
 
         {/* Controls hint */}
-        <div className="mt-4 text-center text-gray-500 text-sm">
+        <div className="mt-4 text-center text-[var(--text-muted)] text-sm">
           Use arrow keys or WASD to move
         </div>
       </div>

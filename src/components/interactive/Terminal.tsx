@@ -145,7 +145,7 @@ export default function Terminal() {
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-          <span className="text-sm text-gray-400 ml-2 font-mono">terminal@portfolio ~ </span>
+          <span className="text-sm text-[var(--text-secondary)] ml-2 font-mono">terminal@portfolio ~ </span>
         </div>
 
         {/* Terminal content */}
@@ -165,7 +165,7 @@ export default function Terminal() {
                     ? 'text-green-400'
                     : line.type === 'error'
                     ? 'text-red-400'
-                    : 'text-gray-300'
+                    : 'text-[var(--text-secondary)]'
                 }`}
               >
                 {line.content || '\u00A0'}
@@ -181,7 +181,7 @@ export default function Terminal() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent outline-none text-white caret-green-400"
+              className="flex-1 bg-transparent outline-none text-[var(--text-primary)] caret-green-400"
               autoFocus
               spellCheck={false}
             />
@@ -190,7 +190,7 @@ export default function Terminal() {
         </div>
       </div>
 
-      <p className="text-center text-gray-500 text-sm mt-4">
+      <p className="text-center text-[var(--text-muted)] text-sm mt-4">
         Try typing <code className="text-indigo-400">help</code> to get started
       </p>
     </motion.div>

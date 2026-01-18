@@ -201,8 +201,8 @@ export default function TwoPhaseCommit() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">Two-Phase Commit</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Two-Phase Commit</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Atomic commit protocol for distributed transactions
         </p>
       </div>
@@ -223,10 +223,10 @@ export default function TwoPhaseCommit() {
 
       {/* Phase indicator */}
       <div className="flex justify-center gap-4 text-sm">
-        <span className={`px-3 py-1 rounded ${phase === 'prepare' ? 'bg-yellow-500/20 text-yellow-400' : 'text-gray-500'}`}>
+        <span className={`px-3 py-1 rounded ${phase === 'prepare' ? 'bg-yellow-500/20 text-yellow-400' : 'text-[var(--text-muted)]'}`}>
           Phase 1: Prepare
         </span>
-        <span className={`px-3 py-1 rounded ${phase === 'commit' ? 'bg-green-500/20 text-green-400' : phase === 'abort' ? 'bg-red-500/20 text-red-400' : 'text-gray-500'}`}>
+        <span className={`px-3 py-1 rounded ${phase === 'commit' ? 'bg-green-500/20 text-green-400' : phase === 'abort' ? 'bg-red-500/20 text-red-400' : 'text-[var(--text-muted)]'}`}>
           Phase 2: {phase === 'abort' ? 'Abort' : 'Commit'}
         </span>
       </div>
@@ -365,7 +365,7 @@ export default function TwoPhaseCommit() {
             </svg>
           </div>
 
-          <p className="text-center text-gray-500 text-xs mt-2">
+          <p className="text-center text-[var(--text-muted)] text-xs mt-2">
             Click participants to toggle their vote (before starting)
           </p>
         </div>
@@ -374,15 +374,15 @@ export default function TwoPhaseCommit() {
         <div className="space-y-4">
           {/* States */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Current States</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Current States</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
-                <span className="text-white">Coordinator</span>
+                <span className="text-[var(--text-primary)]">Coordinator</span>
                 <span style={{ color: stateColors[coordinatorState] }}>{coordinatorState}</span>
               </div>
               {participants.map(p => (
                 <div key={p.id} className="flex items-center justify-between">
-                  <span className="text-gray-400">{p.id}</span>
+                  <span className="text-[var(--text-secondary)]">{p.id}</span>
                   <span style={{ color: stateColors[p.state] }}>{p.state}</span>
                 </div>
               ))}
@@ -391,13 +391,13 @@ export default function TwoPhaseCommit() {
 
           {/* Activity Log */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-2">Activity</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Activity</h3>
             <div className="space-y-1 font-mono text-xs max-h-40 overflow-y-auto">
               {log.map((entry, i) => (
-                <div key={i} className="text-gray-400">{entry}</div>
+                <div key={i} className="text-[var(--text-secondary)]">{entry}</div>
               ))}
               {log.length === 0 && (
-                <span className="text-gray-600">Start transaction to see activity</span>
+                <span className="text-[var(--text-muted)]">Start transaction to see activity</span>
               )}
             </div>
           </div>
@@ -405,8 +405,8 @@ export default function TwoPhaseCommit() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">How 2PC Works:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">How 2PC Works:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li><span className="text-yellow-400">Phase 1 (Prepare)</span>: Coordinator asks all participants to prepare</li>
           <li><span className="text-green-400">Vote Yes</span>: Participant can commit, locks resources</li>

@@ -271,8 +271,8 @@ export default function WALVisualizer() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">Write-Ahead Log (WAL)</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Write-Ahead Log (WAL)</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Durability and crash recovery in databases
         </p>
       </div>
@@ -300,7 +300,7 @@ export default function WALVisualizer() {
           {/* WAL Log */}
           <div className="glass-strong p-4 rounded-2xl">
             <div className="flex items-center gap-2 mb-3">
-              <h3 className="text-sm font-medium text-white">Write-Ahead Log (Disk)</h3>
+              <h3 className="text-sm font-medium text-[var(--text-primary)]">Write-Ahead Log (Disk)</h3>
               {checkpointLsn && (
                 <span className="text-xs px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400">
                   Checkpoint @ LSN {checkpointLsn}
@@ -321,13 +321,13 @@ export default function WALVisualizer() {
                       opacity: checkpointLsn && entry.lsn < checkpointLsn ? 0.5 : 1,
                     }}
                   >
-                    <div className="text-gray-500">LSN {entry.lsn}</div>
+                    <div className="text-[var(--text-muted)]">LSN {entry.lsn}</div>
                     <div style={{ color: getEntryColor(entry.type) }}>
                       {entry.type}
                       {entry.txnId > 0 && ` T${entry.txnId}`}
                     </div>
                     {entry.key && (
-                      <div className="text-gray-400">
+                      <div className="text-[var(--text-secondary)]">
                         {entry.key}: {entry.oldValue}→{entry.newValue}
                       </div>
                     )}
@@ -335,14 +335,14 @@ export default function WALVisualizer() {
                 ))}
               </AnimatePresence>
               {wal.length === 0 && (
-                <span className="text-gray-600 text-xs">WAL is empty - run demo to see entries</span>
+                <span className="text-[var(--text-muted)] text-xs">WAL is empty - run demo to see entries</span>
               )}
             </div>
           </div>
 
           {/* Data Pages */}
           <div className="glass-strong p-4 rounded-2xl">
-            <h3 className="text-sm font-medium text-white mb-3">Data Pages (Buffer Pool)</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Data Pages (Buffer Pool)</h3>
             <div className="grid grid-cols-3 gap-3">
               {dataPages.map(page => (
                 <motion.div
@@ -352,10 +352,10 @@ export default function WALVisualizer() {
                   }}
                   className="glass p-3 rounded-lg border-2"
                 >
-                  <div className="text-xs text-gray-400 mb-1">{page.key}</div>
-                  <div className="text-xl font-bold text-white">${page.value}</div>
+                  <div className="text-xs text-[var(--text-secondary)] mb-1">{page.key}</div>
+                  <div className="text-xl font-bold text-[var(--text-primary)]">${page.value}</div>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs text-gray-500">LSN: {page.lsn}</span>
+                    <span className="text-xs text-[var(--text-muted)]">LSN: {page.lsn}</span>
                     {page.dirty && (
                       <span className="text-xs px-1 rounded bg-yellow-500/20 text-yellow-400">
                         dirty
@@ -369,14 +369,14 @@ export default function WALVisualizer() {
 
           {/* Transactions */}
           <div className="glass-strong p-4 rounded-2xl">
-            <h3 className="text-sm font-medium text-white mb-3">Active Transactions</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Active Transactions</h3>
             <div className="space-y-2">
               {transactions.map(txn => (
                 <div
                   key={txn.id}
                   className="flex items-center justify-between p-2 rounded glass"
                 >
-                  <span className="text-sm text-white">T{txn.id}</span>
+                  <span className="text-sm text-[var(--text-primary)]">T{txn.id}</span>
                   <span className={`text-xs px-2 py-0.5 rounded ${
                     txn.status === 'committed' ? 'bg-green-500/20 text-green-400' :
                     txn.status === 'aborted' ? 'bg-red-500/20 text-red-400' :
@@ -384,13 +384,13 @@ export default function WALVisualizer() {
                   }`}>
                     {txn.status}
                   </span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-[var(--text-muted)]">
                     {txn.operations.length} ops
                   </span>
                 </div>
               ))}
               {transactions.length === 0 && (
-                <span className="text-gray-600 text-xs">No transactions</span>
+                <span className="text-[var(--text-muted)] text-xs">No transactions</span>
               )}
             </div>
           </div>
@@ -400,7 +400,7 @@ export default function WALVisualizer() {
         <div className="space-y-4">
           {/* Legend */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-3">Log Entry Types</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-3">Log Entry Types</h3>
             <div className="space-y-2 text-sm">
               {(['BEGIN', 'WRITE', 'COMMIT', 'ABORT', 'CHECKPOINT'] as const).map(type => (
                 <div key={type} className="flex items-center gap-2">
@@ -408,7 +408,7 @@ export default function WALVisualizer() {
                     className="w-3 h-3 rounded"
                     style={{ backgroundColor: getEntryColor(type) }}
                   />
-                  <span className="text-gray-400">{type}</span>
+                  <span className="text-[var(--text-secondary)]">{type}</span>
                 </div>
               ))}
             </div>
@@ -416,7 +416,7 @@ export default function WALVisualizer() {
 
           {/* Activity Log */}
           <div className="glass p-4 rounded-xl">
-            <h3 className="text-sm font-medium text-white mb-2">Activity</h3>
+            <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Activity</h3>
             <div className="space-y-1 font-mono text-xs max-h-64 overflow-y-auto">
               {log.map((entry, i) => (
                 <div
@@ -424,13 +424,13 @@ export default function WALVisualizer() {
                   className={entry.includes('CRASH') ? 'text-red-400 font-bold' :
                              entry.includes('REDO') ? 'text-green-400' :
                              entry.includes('UNDO') ? 'text-yellow-400' :
-                             'text-gray-400'}
+                             'text-[var(--text-secondary)]'}
                 >
                   {entry}
                 </div>
               ))}
               {log.length === 0 && (
-                <span className="text-gray-600">Run demo to see activity</span>
+                <span className="text-[var(--text-muted)]">Run demo to see activity</span>
               )}
             </div>
           </div>
@@ -438,14 +438,14 @@ export default function WALVisualizer() {
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">How WAL Works:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">How WAL Works:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li><span className="text-indigo-400">Write-Ahead</span>: Log changes BEFORE modifying data pages</li>
           <li><span className="text-cyan-400">Checkpoint</span>: Flush dirty pages to disk, mark recovery point</li>
           <li><span className="text-green-400">REDO</span>: Replay committed transactions after crash</li>
           <li><span className="text-yellow-400">UNDO</span>: Rollback uncommitted transactions</li>
-          <li>Ensures <span className="text-white">ACID durability</span> even after crashes</li>
+          <li>Ensures <span className="text-[var(--text-primary)]">ACID durability</span> even after crashes</li>
         </ul>
       </div>
     </div>

@@ -12,7 +12,7 @@ const { title, description = "Personal portfolio and blog" } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +22,15 @@ const { title, description = "Personal portfolio and blog" } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <!-- Theme initialization - prevents flash of wrong theme -->
+    <script is:inline>
+      (function() {
+        const cookieTheme = document.cookie.match(/theme=(dark|light)/)?.[1];
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = cookieTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body class="antialiased min-h-screen flex flex-col">
     <div class="gradient-bg"></div>

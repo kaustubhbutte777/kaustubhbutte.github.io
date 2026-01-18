@@ -113,8 +113,8 @@ export default function BufferPoolLRU() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">InnoDB Buffer Pool LRU</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">InnoDB Buffer Pool LRU</h2>
+        <p className="text-[var(--text-secondary)] text-sm">
           Midpoint insertion strategy prevents table scans from flushing hot pages
         </p>
       </div>
@@ -155,8 +155,8 @@ export default function BufferPoolLRU() {
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              <span className="text-sm font-medium text-white">HOT Sublist (5/8)</span>
-              <span className="text-xs text-gray-500">Frequently accessed</span>
+              <span className="text-sm font-medium text-[var(--text-primary)]">HOT Sublist (5/8)</span>
+              <span className="text-xs text-[var(--text-muted)]">Frequently accessed</span>
             </div>
             <div className="grid grid-cols-5 gap-2 min-h-[120px]">
               <AnimatePresence mode="popLayout">
@@ -173,17 +173,17 @@ export default function BufferPoolLRU() {
                                hover:bg-green-500/30 transition-colors"
                   >
                     <span className="text-green-400 font-mono text-sm">P{page.id}</span>
-                    <span className="text-xs text-gray-500">×{page.accessCount + 1}</span>
+                    <span className="text-xs text-[var(--text-muted)]">×{page.accessCount + 1}</span>
                   </motion.div>
                 ))}
               </AnimatePresence>
               {Array.from({ length: hotSlots - hotPages.length }).map((_, i) => (
                 <div
                   key={`empty-hot-${i}`}
-                  className="aspect-square rounded-lg border border-dashed border-gray-700
+                  className="aspect-square rounded-lg border border-dashed border-[var(--divider)]
                              flex items-center justify-center"
                 >
-                  <span className="text-gray-700 text-xs">empty</span>
+                  <span className="text-[var(--text-muted)] text-xs">empty</span>
                 </div>
               ))}
             </div>
@@ -200,8 +200,8 @@ export default function BufferPoolLRU() {
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-              <span className="text-sm font-medium text-white">COLD Sublist (3/8)</span>
-              <span className="text-xs text-gray-500">Recently loaded</span>
+              <span className="text-sm font-medium text-[var(--text-primary)]">COLD Sublist (3/8)</span>
+              <span className="text-xs text-[var(--text-muted)]">Recently loaded</span>
             </div>
             <div className="grid grid-cols-3 gap-2 min-h-[120px]">
               <AnimatePresence mode="popLayout">
@@ -218,17 +218,17 @@ export default function BufferPoolLRU() {
                                hover:bg-blue-500/30 transition-colors"
                   >
                     <span className="text-blue-400 font-mono text-sm">P{page.id}</span>
-                    <span className="text-xs text-gray-500">×{page.accessCount + 1}</span>
+                    <span className="text-xs text-[var(--text-muted)]">×{page.accessCount + 1}</span>
                   </motion.div>
                 ))}
               </AnimatePresence>
               {Array.from({ length: coldSlots - coldPages.length }).map((_, i) => (
                 <div
                   key={`empty-cold-${i}`}
-                  className="aspect-square rounded-lg border border-dashed border-gray-700
+                  className="aspect-square rounded-lg border border-dashed border-[var(--divider)]
                              flex items-center justify-center"
                 >
-                  <span className="text-gray-700 text-xs">empty</span>
+                  <span className="text-[var(--text-muted)] text-xs">empty</span>
                 </div>
               ))}
             </div>
@@ -239,7 +239,7 @@ export default function BufferPoolLRU() {
         <div className="mt-4 pt-4 border-t border-white/10">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-[var(--text-secondary)]">
               Pages at the tail of COLD sublist are evicted first (LRU)
             </span>
           </div>
@@ -248,7 +248,7 @@ export default function BufferPoolLRU() {
 
       {/* Activity Log */}
       <div className="glass p-4 rounded-xl">
-        <h3 className="text-sm font-medium text-white mb-2">Activity Log</h3>
+        <h3 className="text-sm font-medium text-[var(--text-primary)] mb-2">Activity Log</h3>
         <div className="space-y-1 font-mono text-xs max-h-40 overflow-y-auto">
           <AnimatePresence>
             {accessLog.map((log, i) => (
@@ -260,7 +260,7 @@ export default function BufferPoolLRU() {
                   log.includes('promoted') ? 'text-green-400' :
                   log.includes('evicted') ? 'text-red-400' :
                   log.includes('Table Scan') ? 'text-yellow-400' :
-                  'text-gray-400'
+                  'text-[var(--text-secondary)]'
                 }`}
               >
                 {log}
@@ -268,14 +268,14 @@ export default function BufferPoolLRU() {
             ))}
           </AnimatePresence>
           {accessLog.length === 0 && (
-            <span className="text-gray-600">No activity yet. Load some pages!</span>
+            <span className="text-[var(--text-muted)]">No activity yet. Load some pages!</span>
           )}
         </div>
       </div>
 
       {/* Explanation */}
-      <div className="glass p-4 rounded-xl text-sm text-gray-400">
-        <h3 className="font-medium text-white mb-2">How it works:</h3>
+      <div className="glass p-4 rounded-xl text-sm text-[var(--text-secondary)]">
+        <h3 className="font-medium text-[var(--text-primary)] mb-2">How it works:</h3>
         <ul className="list-disc list-inside space-y-1">
           <li>New pages are inserted at the <span className="text-yellow-400">midpoint</span> (head of COLD sublist)</li>
           <li>Pages are promoted to HOT sublist after repeated access</li>
