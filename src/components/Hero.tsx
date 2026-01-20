@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
-import HeroScene from './3d/HeroScene';
 import GlowButton from './ui/GlowButton';
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-      <HeroScene />
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         <motion.div
